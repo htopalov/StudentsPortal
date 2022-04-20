@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentsPortal.Data;
 
@@ -11,9 +12,10 @@ using StudentsPortal.Data;
 namespace StudentsPortal.Data.Migrations
 {
     [DbContext(typeof(StudentsPortalDbContext))]
-    partial class StudentsPortalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220420191323_ChangeImageUrlColumn")]
+    partial class ChangeImageUrlColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

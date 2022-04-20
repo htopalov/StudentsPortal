@@ -30,7 +30,6 @@ namespace StudentsPortal.Data.DataModels
         public string Phone { get; set; }
 
         [MaxLength(ProfileImageUrlMaxLength)]
-        [Required]
         public string ProfileImageUrl { get; set; }
 
         [ForeignKey(nameof(Gender))]
