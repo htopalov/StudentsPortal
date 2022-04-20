@@ -1,8 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using StudentsPortal.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder
     .Services
     .AddControllers();
+
+builder
+    .Services
+    .AddDbContext<StudentsPortalDbContext>(opt => 
+        opt.UseSqlServer(
+            builder
+                .Configuration
+                .GetConnectionString("StudentsPortalDbConnection"))
+        );
 
 builder
     .Services
