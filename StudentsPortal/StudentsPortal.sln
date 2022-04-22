@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsPortal.Api", "StudentsPortal.Api\StudentsPortal.Api.csproj", "{CC11EEF3-CF02-473D-B96A-CDFCFF9D4AA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsPortal.Data", "StudentsPortal.Data\StudentsPortal.Data.csproj", "{8A713EFF-5DA8-4989-AB35-CEC5A834DD37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsPortal.Data", "StudentsPortal.Data\StudentsPortal.Data.csproj", "{8A713EFF-5DA8-4989-AB35-CEC5A834DD37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsPortal.Models", "StudentsPortal.Models\StudentsPortal.Models.csproj", "{AF610D59-7869-427D-B64F-0ADC0D0508A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8A713EFF-5DA8-4989-AB35-CEC5A834DD37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A713EFF-5DA8-4989-AB35-CEC5A834DD37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A713EFF-5DA8-4989-AB35-CEC5A834DD37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF610D59-7869-427D-B64F-0ADC0D0508A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF610D59-7869-427D-B64F-0ADC0D0508A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF610D59-7869-427D-B64F-0ADC0D0508A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF610D59-7869-427D-B64F-0ADC0D0508A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
