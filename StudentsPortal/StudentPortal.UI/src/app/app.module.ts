@@ -40,10 +40,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { TopNavigationComponent } from './layout/top-navigation/top-navigation.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TopNavigationComponent
   ],
   imports: [
     BrowserModule,
