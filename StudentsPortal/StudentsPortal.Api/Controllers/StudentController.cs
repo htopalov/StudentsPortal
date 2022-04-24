@@ -23,7 +23,6 @@ namespace StudentsPortal.Api.Controllers
         public async Task<IActionResult> GetAll() 
             => Ok(this.mapper
                 .Map<List<StudentExportDto>>(await this.studentRepo
-                .GetStudentsAsync())
-            );
+                .GetStudentsAsync()));
     }
 }
