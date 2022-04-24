@@ -1,6 +1,9 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { TopNavigationComponent } from './layout/top-navigation/top-navigation.component';
+import { StudentsComponent } from './students/students.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,12 +43,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { TopNavigationComponent } from './layout/top-navigation/top-navigation.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopNavigationComponent
+    TopNavigationComponent,
+    StudentsComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +91,8 @@ import { TopNavigationComponent } from './layout/top-navigation/top-navigation.c
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
