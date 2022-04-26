@@ -24,5 +24,20 @@ namespace StudentsPortal.Api.Controllers
             => Ok(this.mapper
                 .Map<List<StudentExportDto>>(await this.studentRepo
                 .GetStudentsAsync()));
+
+        [HttpGet]
+        [Route("{studentId:guid}")]
+        public async Task<IActionResult> GetStudent(Guid studentId)
+        {
+            var student = await this.studentRepo
+                .GetStudentAsync(studentId);
+
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(this.mapper.Map<StudentExportDto>(student));
+        }
     }
 }
