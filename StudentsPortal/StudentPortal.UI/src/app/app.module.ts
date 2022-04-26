@@ -46,12 +46,14 @@ import { MatTableModule } from '@angular/material/table';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { StudentDetailsComponent } from './students/student-details/student-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopNavigationComponent,
-    StudentsComponent
+    StudentsComponent,
+    StudentDetailsComponent
   ],
   imports: [
     FormsModule,
