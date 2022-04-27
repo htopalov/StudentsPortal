@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudentsPortal.Data.DataModels;
 
 namespace StudentsPortal.Data.Repositories.Student
 {
@@ -20,5 +21,9 @@ namespace StudentsPortal.Data.Repositories.Student
                 .Include(s => s.Address)
                 .Include(s => s.Gender)
                 .FirstOrDefaultAsync(s => s.Id == studentId);
+
+        public async Task<List<Gender>> GetGendersAsync() 
+            => await this.context.Genders
+                .ToListAsync();
     }
 }
