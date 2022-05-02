@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudentsPortal.Data.DataModels;
+using StudentsPortal.Models.Student;
 
 namespace StudentsPortal.Data.Repositories.Student
 {
@@ -25,5 +26,22 @@ namespace StudentsPortal.Data.Repositories.Student
         public async Task<List<Gender>> GetGendersAsync() 
             => await this.context.Genders
                 .ToListAsync();
+
+        public async Task<DataModels.Student> UpdateStudentAsync(Guid studentId, StudentImportDto importedStudent)
+        {
+            var existingStudent = await GetStudentAsync(studentId);
+            existingStudent.FirstName = importedStudent.FirstName;
+            existingStudent.LastName = importedStudent.LastName;
+            existingStudent.BirthDate = DateTime.Parse(importedStudent.BirthDate);
+            existingStudent.Email = importedStudent.Email;
+            existingStudent.Phone = importedStudent.Phone;
+            existingStudent.Address.PhysicalAddress = importedStudent.PhysicalAddress;
+            existingStudent.Address.PostalAddress = importedStudent.PostalAddress;
+            existingStudent.GenderId = importedStudent.GenderId;
+
+            this.context.Students.Update(existingStudent);
+            await this.context.SaveChangesAsync();
+            return existingStudent;
+        }
     }
 }

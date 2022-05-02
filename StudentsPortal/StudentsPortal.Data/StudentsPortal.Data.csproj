@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StudentsPortal.Common\StudentsPortal.Common.csproj" />
+    <ProjectReference Include="..\StudentsPortal.Models\StudentsPortal.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -20,7 +20,7 @@ namespace StudentsPortal.Api.Controllers
 
         [HttpGet]
         [Route("all")]
-        public async Task<IActionResult> GetAll() 
+        public async Task<IActionResult> GetAll()
             => Ok(this.mapper
                 .Map<List<StudentExportDto>>(await this.studentRepo
                 .GetStudentsAsync()));
@@ -38,6 +38,23 @@ namespace StudentsPortal.Api.Controllers
             }
 
             return Ok(this.mapper.Map<StudentExportDto>(student));
+        }
+
+        [HttpPut("{studentId:guid}")]
+        public async Task<IActionResult> UpdateStudent([FromRoute]Guid studentId,[FromBody]StudentImportDto updateStudentDto)
+        {
+            var existingStudent = await this.studentRepo
+                .GetStudentAsync(studentId);
+
+            if (existingStudent == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(this.mapper
+                .Map<StudentExportDto>(
+                    await this.studentRepo
+                        .UpdateStudentAsync(studentId, updateStudentDto)));
         }
     }
 }

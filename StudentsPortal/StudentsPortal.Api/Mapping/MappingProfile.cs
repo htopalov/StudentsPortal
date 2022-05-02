@@ -15,6 +15,8 @@ namespace StudentsPortal.Api.Mapping
             this.CreateMap<Gender, GenderExportDto>();
 
             this.CreateMap<Address, AddressExportDto>();
+
+            this.CreateMap<StudentImportDto, Student>();
         }
     }
 }
