@@ -12,5 +12,7 @@ namespace StudentsPortal.Data.Repositories.Student
         Task<List<Gender>> GetGendersAsync();
 
         Task<DataModels.Student> UpdateStudentAsync(Guid studentId, StudentImportDto importedStudent);
+
+        Task<DataModels.Student> DeleteStudentAsync(Guid studentId);
     }
 }

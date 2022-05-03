@@ -43,5 +43,17 @@ namespace StudentsPortal.Data.Repositories.Student
             await this.context.SaveChangesAsync();
             return existingStudent;
         }
+
+        public async Task<DataModels.Student> DeleteStudentAsync(Guid studentId)
+        {
+            var student = await GetStudentAsync(studentId);
+            this.context
+                .Students
+                .Remove(student);
+
+            await this.context.SaveChangesAsync();
+
+            return student;
+        }
     }
 }

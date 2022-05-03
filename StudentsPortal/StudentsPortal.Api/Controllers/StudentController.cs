@@ -56,5 +56,23 @@ namespace StudentsPortal.Api.Controllers
                     await this.studentRepo
                         .UpdateStudentAsync(studentId, updateStudentDto)));
         }
+
+        [HttpDelete]
+        [Route("{studentId:guid}")]
+        public async Task<IActionResult> DeleteStudent(Guid studentId)
+        {
+            var existingStudent = await this.studentRepo
+                .GetStudentAsync(studentId);
+
+            if (existingStudent == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(this.mapper
+                .Map<StudentExportDto>(
+                    await this.studentRepo
+                        .DeleteStudentAsync(studentId)));
+        }
     }
 }
