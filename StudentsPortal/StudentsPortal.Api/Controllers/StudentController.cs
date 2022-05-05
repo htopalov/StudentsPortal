@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using StudentsPortal.Data.DataModels;
 using StudentsPortal.Data.Repositories.Student;
 using StudentsPortal.Models.Student;
 
@@ -73,6 +74,19 @@ namespace StudentsPortal.Api.Controllers
                 .Map<StudentExportDto>(
                     await this.studentRepo
                         .DeleteStudentAsync(studentId)));
+        }
+
+        [HttpPost]
+        [Route("add")]
+        public async Task<IActionResult> AddStudent(StudentImportDto student)
+        {
+            var createdStudent = await this.studentRepo
+                .CreateStudentAsync(student);
+
+            return CreatedAtAction(
+                nameof(GetStudent),
+                new {studentId = createdStudent.Id},
+                this.mapper.Map<StudentExportDto>(createdStudent));
         }
     }
 }

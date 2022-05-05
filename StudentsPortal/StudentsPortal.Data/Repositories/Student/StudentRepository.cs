@@ -55,5 +55,32 @@ namespace StudentsPortal.Data.Repositories.Student
 
             return student;
         }
+
+        public async Task<DataModels.Student> CreateStudentAsync(StudentImportDto importedStudent)
+        {
+            var student = new DataModels.Student
+            {
+                FirstName = importedStudent.FirstName,
+                LastName = importedStudent.LastName,
+                BirthDate = DateTime.Parse(importedStudent.BirthDate),
+                Email = importedStudent.Email,
+                Phone = importedStudent.Phone,
+                GenderId = importedStudent.GenderId
+            };
+
+            await this.context.Students.AddAsync(student);
+
+            var studentAddress = new Address
+            {
+                StudentId = student.Id,
+                PhysicalAddress = importedStudent.PhysicalAddress,
+                PostalAddress = importedStudent.PostalAddress,
+            };
+            student.Address = studentAddress;
+
+            await context.SaveChangesAsync();
+
+            return student;
+        }
     }
 }
