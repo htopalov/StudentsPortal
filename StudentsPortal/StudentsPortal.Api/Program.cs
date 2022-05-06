@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using StudentsPortal.Data;
+using StudentsPortal.Data.Repositories.Image;
 using StudentsPortal.Data.Repositories.Student;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,10 @@ builder
 builder
     .Services
     .AddScoped<IStudentRepository, StudentRepository>();
+
+builder
+    .Services
+    .AddScoped<IImageRepository, ImageRepository>();
 
 builder
     .Services

@@ -16,5 +16,7 @@ namespace StudentsPortal.Data.Repositories.Student
         Task<DataModels.Student> DeleteStudentAsync(Guid studentId);
 
         Task<DataModels.Student> CreateStudentAsync(StudentImportDto importedStudent);
+
+        Task<bool> UpdateProfileImage(Guid studentId, string profileImageUrl);
     }
 }

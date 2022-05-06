@@ -22,4 +22,8 @@
     <ProjectReference Include="..\StudentsPortal.Models\StudentsPortal.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
+  </ItemGroup>
+
 </Project>
