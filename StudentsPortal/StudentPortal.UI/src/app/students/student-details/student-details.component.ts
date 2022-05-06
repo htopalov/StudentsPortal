@@ -35,6 +35,8 @@ export class StudentDetailsComponent implements OnInit {
   };
 
   genderList: Gender[] = [];
+  isNewStudent = true;
+  pageHeader = '';
 
   constructor(private readonly studentService: StudentService,
     private readonly route: ActivatedRoute,
@@ -48,12 +50,21 @@ export class StudentDetailsComponent implements OnInit {
         this.studentId = params.get('id');
 
         if(this.studentId){
-          this.studentService.getStudent(this.studentId)
-          .subscribe(
-            (successResponse) => {
-              this.student = successResponse;
-            }
-          );
+
+          if(this.studentId.toLowerCase() == 'Add'.toLowerCase()){
+            this.isNewStudent = true;
+            this.pageHeader = 'Add new student';
+          } else {
+            this.isNewStudent = false;
+            this.pageHeader = 'Student Details';
+            this.studentService.getStudent(this.studentId)
+            .subscribe(
+              (successResponse) => {
+                this.student = successResponse;
+              }
+            );
+          }
+
           this.genderService.getGenderList()
           .subscribe(
             (successResponse) => {
@@ -84,8 +95,25 @@ export class StudentDetailsComponent implements OnInit {
         duration: 2000
       });
       setTimeout(()=>{
-        this.router.navigateByUrl('/api/student/all');
+        this.router.navigateByUrl('/');
       },2000);
+    },
+    (errorResponse)=>{
+      console.log(errorResponse);
+    });
+  }
+
+  onAdd(): void {
+    this.studentService.createStudent(this.student)
+    .subscribe(
+      (successResponse)=>{
+        this.snackBarNotifier.open(`Student ${successResponse.firstName} ${successResponse.lastName} added`, undefined, {
+          duration: 2000
+        });
+
+        setTimeout(()=>{
+          this.router.navigateByUrl('/');
+        },2000);
     },
     (errorResponse)=>{
       console.log(errorResponse);
