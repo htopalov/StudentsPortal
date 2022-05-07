@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Gender } from 'src/app/models/ui-models/gender.model';
@@ -38,6 +39,8 @@ export class StudentDetailsComponent implements OnInit {
   isNewStudent = true;
   pageHeader = '';
   displayProfileImageUrl = '';
+
+  @ViewChild('studentDetailsForm') studentDetailsForm?: NgForm;
 
   constructor(private readonly studentService: StudentService,
     private readonly route: ActivatedRoute,
@@ -83,15 +86,17 @@ export class StudentDetailsComponent implements OnInit {
   }
 
   onUpdate(): void {
-    this.studentService.updateStudent(this.student.id, this.student)
-    .subscribe((successResponse)=>{
-      this.snackBarNotifier.open(`Student ${successResponse.firstName} ${successResponse.lastName} updated`, undefined, {
-        duration: 2000
+    if(this.studentDetailsForm?.form.valid){
+      this.studentService.updateStudent(this.student.id, this.student)
+      .subscribe((successResponse)=>{
+        this.snackBarNotifier.open(`Student ${successResponse.firstName} ${successResponse.lastName} updated`, undefined, {
+          duration: 2000
+        });
+      },
+      (errorResponse)=>{
+        console.log(errorResponse);
       });
-    },
-    (errorResponse)=>{
-      console.log(errorResponse);
-    });
+    }
   }
 
   onDelete(): void {
@@ -110,20 +115,22 @@ export class StudentDetailsComponent implements OnInit {
   }
 
   onAdd(): void {
-    this.studentService.createStudent(this.student)
-    .subscribe(
-      (successResponse)=>{
-        this.snackBarNotifier.open(`Student ${successResponse.firstName} ${successResponse.lastName} added`, undefined, {
-          duration: 2000
-        });
+    if(this.studentDetailsForm?.form.valid){
+      this.studentService.createStudent(this.student)
+      .subscribe(
+        (successResponse)=>{
+          this.snackBarNotifier.open(`Student ${successResponse.firstName} ${successResponse.lastName} added`, undefined, {
+            duration: 2000
+          });
 
-        setTimeout(()=>{
-          this.router.navigateByUrl('/');
-        },2000);
-    },
-    (errorResponse)=>{
-      console.log(errorResponse);
-    });
+          setTimeout(()=>{
+            this.router.navigateByUrl('/');
+          },2000);
+      },
+      (errorResponse)=>{
+        console.log(errorResponse);
+      });
+    }
   }
 
   uploadImage(event:any): void {
